@@ -72,6 +72,28 @@ const accessToken=jwt.sign({id:user._id},process.env.jwt_secret,{
 }
 
 
+const profileUp= async (req,res)=>{
+try {const user=req.user
+console.log(req.file)
+console.log(user)
+const profileUser= await userSchema.findById(user._id);
+console.log(profileUser);
+
+profileUser.profile=req.file.filename
+
+await profileUser.save()
+
+res.json({msg:"Profile Updated", profileUser})
+}catch(err){
+  console.log("Server error")
+}
+}
+
+// if(!profileUser){
+//   return res.status(404).json({ msg: "ProfileUser doesn't exist" });
+
+// }
+
 const getUsers=async(req,res)=>{
 const users=await userSchema.find({})
 
@@ -79,4 +101,4 @@ res.json(users)
 
 }
 
-module.exports={signUp,login,getUsers}
+module.exports={signUp,login,getUsers,profileUp}

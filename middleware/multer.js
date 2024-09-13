@@ -12,7 +12,7 @@ const pictureStorage= multer.diskStorage({
         cb(null,"public/")
     },
     filename: function(req,file,cb){
-const filename=`${Date.now()}${path.extname(filename.originalname)}` ;
+const filename=`${Date.now()}${path.extname(file.originalname)}` ;
 
 cb(null,filename) }
 })
@@ -22,11 +22,6 @@ const upload=multer({
     limits:{fileSize:1024*1024*3}
 })
 
-const multerMiddleware=(upload.single("upload"),(req,res,next)=>{
-    console.log(req.file)
-    res.json({file:"public/"});
+const multerMiddleware=upload.single("upload")
 
-    next()
-}
-) 
 module.exports= multerMiddleware

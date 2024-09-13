@@ -10,10 +10,13 @@ const postRoute=require("./route/postRoute")
 const likeRoute=require("./route/likeRoute")
 const commentRoute= require("./route/commentRoute")
 
+
+
 app.use("/users",userRoute)
 app.use("/posts",postRoute)
 app.use("/posts",likeRoute)
 app.use("/posts",commentRoute)
+
 
 
 
