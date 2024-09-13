@@ -6,7 +6,7 @@ const comment = mongoose.Schema({
     required: true,
   },
   createdAt: { type: Date, default: new Date() }, 
-  userrId: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },

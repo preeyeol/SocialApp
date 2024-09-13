@@ -31,8 +31,8 @@ const comment = async (req, res) => {
 
 const getAllcomment = async (req, res) => {
   try {
-    const postId = req.params.id;
-
+    const postId = req.params.postId;
+console.log(postId)
     const commentsInPost= await postSchema.findById(postId).populate({
         path:"comments",
         select:"text",
@@ -41,9 +41,10 @@ const getAllcomment = async (req, res) => {
             select: "username email"
         }
     });
+    console.log(commentsInPost)
     res.json(commentsInPost)
   } catch (err) {
-    console.log("Server Error");
+    console.log(err);
   }
 };
 
